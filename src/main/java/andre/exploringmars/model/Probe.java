@@ -142,7 +142,10 @@ public class Probe {
 	}
 	
 	
-	
+	/////// print function
+	public String getAsStringForOutput(){
+		return String.format("%d %d %c", currentX, currentY, Direction.toCharacter(currentDirection));
+	}
 }
 
 

@@ -33,7 +33,9 @@ public class App
 		String line;
 		List<String> lines = Lists.newArrayList();
 		while((line = br.readLine())!=null){
-			lines.add(line);
+			if(!line.isEmpty()){
+				lines.add(line);
+			}
 		}
 		br.close();
 		return lines;

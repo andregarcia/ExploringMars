@@ -21,7 +21,7 @@ public class ProbeTest {
 
 	@Test
 	public void testProbeConstructor() {
-		Probe probe = new Probe(5, 10, Direction.SOUTH, createProbeCommandList(), createGrid());
+		Probe probe = new Probe(5, 10, Direction.SOUTH, createProbeCommandList(), createGrid(), 0);
 		
 		Assert.assertEquals(5, probe.getInitialX());
 		Assert.assertEquals(5, probe.getCurrentX());
@@ -36,7 +36,7 @@ public class ProbeTest {
 	@Test
 	public void testProbeConstructorInvalidXCoordinate(){
 		try{
-			new Probe(-1, 10, Direction.SOUTH, createProbeCommandList(), createGrid());
+			new Probe(-1, 10, Direction.SOUTH, createProbeCommandList(), createGrid(), 0);
 			Assert.fail("Should throw InvalidInitializationCoordinatesException");
 		} catch(InvalidInitializationCoordinatesException e){
 			
@@ -47,7 +47,7 @@ public class ProbeTest {
 	@Test
 	public void testProbeConstructorInvalidYCoordinate(){		
 		try{
-			new Probe(10, -1, Direction.SOUTH, createProbeCommandList(), createGrid());
+			new Probe(10, -1, Direction.SOUTH, createProbeCommandList(), createGrid(), 0);
 			Assert.fail("Should throw InvalidInitializationCoordinatesException");
 		} catch(InvalidInitializationCoordinatesException e){
 			
@@ -59,7 +59,7 @@ public class ProbeTest {
 	public void testHasNextProbeCommand(){
 		//construct probe
 		List<ProbeCommand> probeCommandList = createProbeCommandList();
-		Probe probe = new Probe(5, 10, Direction.SOUTH, probeCommandList, createGrid());
+		Probe probe = new Probe(5, 10, Direction.SOUTH, probeCommandList, createGrid(), 0);
 		
 		//assert has next command
 		Assert.assertTrue(probe.hasNextProbeCommand());
@@ -80,7 +80,7 @@ public class ProbeTest {
 		List<ProbeCommand> probeCommandList = new ArrayList<ProbeCommand>();
 		probeCommandList.add(ProbeCommand.MOVE);
 		probeCommandList.add(ProbeCommand.LEFT);
-		Probe probe = new Probe(5, 10, Direction.SOUTH, probeCommandList, createGrid());
+		Probe probe = new Probe(5, 10, Direction.SOUTH, probeCommandList, createGrid(), 0);
 		
 		Assert.assertEquals(0, probe.getNextCommandIndex());
 		probe.processNextProbeCommand();
@@ -93,7 +93,7 @@ public class ProbeTest {
 	public void testProcessNextProbeCommandInvalidXPositionLowerThanZero(){
 		List<ProbeCommand> probeCommandList = new ArrayList<ProbeCommand>();
 		probeCommandList.add(ProbeCommand.MOVE);
-		Probe probe = new Probe(0, 0, Direction.WEST, probeCommandList, createGrid());
+		Probe probe = new Probe(0, 0, Direction.WEST, probeCommandList, createGrid(), 0);
 		try{
 			probe.processNextProbeCommand();
 			fail("Should throw InvalidProbePositionException");
@@ -108,7 +108,7 @@ public class ProbeTest {
 		List<ProbeCommand> probeCommandList = new ArrayList<ProbeCommand>();
 		probeCommandList.add(ProbeCommand.MOVE);
 		Grid grid = createGrid();
-		Probe probe = new Probe(grid.getMaxX(), 0, Direction.EAST, probeCommandList, grid);
+		Probe probe = new Probe(grid.getMaxX(), 0, Direction.EAST, probeCommandList, grid, 0);
 		try{
 			probe.processNextProbeCommand();
 			fail("Should throw InvalidProbePositionException");
@@ -122,7 +122,7 @@ public class ProbeTest {
 	public void testProcessNextProbeCommandInvalidYPositionLowerThanZero(){
 		List<ProbeCommand> probeCommandList = new ArrayList<ProbeCommand>();
 		probeCommandList.add(ProbeCommand.MOVE);
-		Probe probe = new Probe(0, 0, Direction.SOUTH, probeCommandList, createGrid());
+		Probe probe = new Probe(0, 0, Direction.SOUTH, probeCommandList, createGrid(), 0);
 		try{
 			probe.processNextProbeCommand();
 			fail("Should throw InvalidProbePositionException");
@@ -137,7 +137,7 @@ public class ProbeTest {
 		List<ProbeCommand> probeCommandList = new ArrayList<ProbeCommand>();
 		probeCommandList.add(ProbeCommand.MOVE);
 		Grid grid = createGrid();
-		Probe probe = new Probe(0, grid.getMaxY(), Direction.WEST, probeCommandList, grid);
+		Probe probe = new Probe(0, grid.getMaxY(), Direction.WEST, probeCommandList, grid, 0);
 		try{
 			probe.processNextProbeCommand();
 			fail("Should throw InvalidProbePositionException");
@@ -155,7 +155,7 @@ public class ProbeTest {
 		probeCommandList.add(ProbeCommand.MOVE);
 		probeCommandList.add(ProbeCommand.RIGHT);
 		probeCommandList.add(ProbeCommand.MOVE);
-		Probe probe = new Probe(5, 3, Direction.WEST, probeCommandList, createGrid());
+		Probe probe = new Probe(5, 3, Direction.WEST, probeCommandList, createGrid(), 0);
 		probe.processAllProbeCommands();
 
 		Assert.assertFalse(probe.hasNextProbeCommand());

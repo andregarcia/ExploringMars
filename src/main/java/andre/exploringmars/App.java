@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+import andre.exploringmars.input.InputValidator;
+
 import com.google.common.collect.Lists;
 
 /**
@@ -17,6 +19,7 @@ public class App
     {
 		try {
 			List<String> lines = readFile(args[0]);
+			InputValidator.validateInput(lines);	
 			List<String> results = MarsExplorer.createProbesAndExploreMars(lines);
 			printResults(results);
 		} catch (IOException e) {
@@ -37,7 +40,7 @@ public class App
 				lines.add(line);
 			}
 		}
-		br.close();
+		br.close();		
 		return lines;
     }
     

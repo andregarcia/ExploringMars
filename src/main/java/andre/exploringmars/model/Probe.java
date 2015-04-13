@@ -8,6 +8,7 @@ import andre.exploringmars.exception.NoMoreProbeCommandsException;
 
 public class Probe {
 
+	private int probeNumber;
 	
 	private int initialX;
 	private int initialY;
@@ -22,7 +23,7 @@ public class Probe {
 	
 	private Grid grid;
 	
-	public Probe(int initialX, int initialY, Direction initialDirection, List<ProbeCommand> probeCommandList, Grid grid){
+	public Probe(int initialX, int initialY, Direction initialDirection, List<ProbeCommand> probeCommandList, Grid grid, int probeNumber){
 		if(initialX<0 || initialY<0){
 			throw new InvalidInitializationCoordinatesException(initialX, initialY);
 		}
@@ -37,8 +38,10 @@ public class Probe {
 		
 		this.probeCommandList = probeCommandList;
 		this.nextCommandIndex = 0;
-		
+				
 		this.grid = grid;
+		
+		this.probeNumber = probeNumber;
 	}
 	
 	
@@ -65,7 +68,7 @@ public class Probe {
 	
 	private void validateProbePosition(){
 		if(this.currentX<0 || this.currentY<0 || this.currentX>grid.getMaxX() || this.currentY>grid.getMaxY()){
-			throw new InvalidProbePositionException(this.currentX, this.currentY);
+			throw new InvalidProbePositionException(this.currentX, this.currentY, this.probeNumber);
 		}
 	}
 
@@ -142,6 +145,11 @@ public class Probe {
 	}
 	
 	
+	public int getProbeNumber() {
+		return probeNumber;
+	}
+
+
 	/////// print function
 	public String getAsStringForOutput(){
 		return String.format("%d %d %c", currentX, currentY, Direction.toCharacter(currentDirection));

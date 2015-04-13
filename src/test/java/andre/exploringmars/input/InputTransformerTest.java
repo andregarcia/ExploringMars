@@ -51,7 +51,7 @@ public class InputTransformerTest extends TestCase {
 	public void testProbePositionInputLineToProbe(){
 		String inputLine1 = "1 2 N";
 		String inputLine2 = "LMLMR";
-		Probe probe = InputTransformer.probeInputLinesToProbe(createGrid(), inputLine1, inputLine2);
+		Probe probe = InputTransformer.probeInputLinesToProbe(createGrid(), inputLine1, inputLine2, 0);
 		Assert.assertEquals(1, probe.getInitialX());
 		Assert.assertEquals(1, probe.getCurrentX());
 		Assert.assertEquals(2, probe.getInitialY());
@@ -66,7 +66,7 @@ public class InputTransformerTest extends TestCase {
 		String inputLine1 = "-1 7 N";
 		String inputLine2 = "LMLMR";
 		try{
-			InputTransformer.probeInputLinesToProbe(createGrid(), inputLine1, inputLine2);
+			InputTransformer.probeInputLinesToProbe(createGrid(), inputLine1, inputLine2, 0);
 			fail("Should throw InvalidInitializationCoordinates exception");
 		} catch(InvalidInitializationCoordinatesException e){
 			
@@ -79,7 +79,7 @@ public class InputTransformerTest extends TestCase {
 		String inputLine1 = "1 7 Z";
 		String inputLine2 = "LMLMR";
 		try{
-			InputTransformer.probeInputLinesToProbe(createGrid(), inputLine1, inputLine2);
+			InputTransformer.probeInputLinesToProbe(createGrid(), inputLine1, inputLine2, 0);
 			fail("Should throw InvalidDirectionException exception");
 		} catch(InvalidDirectionException e){
 			

@@ -13,8 +13,8 @@ public class MarsExplorer {
 	
 	
     public static List<String> createProbesAndExploreMars(List<String> inputLines){
-    		List<Probe> probes = createProbes(inputLines);
-			return exploreMars(probes);
+    	List<Probe> probes = createProbes(inputLines);
+		return exploreMars(probes);
     }
     
     
@@ -24,13 +24,15 @@ public class MarsExplorer {
 		Grid grid = InputTransformer.gridInputLineToGrid(inputLines.remove(0));
 		List<Probe> probes = Lists.newArrayList();
 		
+		int probeNumber = 1;
 		for(int i=0; i<inputLines.size(); ){
 			String positionLine = inputLines.get(i);
 			i += 1;
 			String commandsLine = inputLines.get(i);
 			i += 1;
-			Probe probe = InputTransformer.probeInputLinesToProbe(grid, positionLine, commandsLine);
+			Probe probe = InputTransformer.probeInputLinesToProbe(grid, positionLine, commandsLine, probeNumber);
 			probes.add(probe);
+			probeNumber += 1;
 		}
 		return probes;
     }

@@ -21,14 +21,15 @@ public class InputTransformer {
 	
 	
 	//converts a probe position line to a Probe instance
-	public static Probe probeInputLinesToProbe(Grid grid, String probePositionInputLine, String probeCommandsInputLine){
+	public static Probe probeInputLinesToProbe(Grid grid, String probePositionInputLine, String probeCommandsInputLine, int probeNumber){
 		probePositionInputLine = probePositionInputLine.trim();
 		String[] splited = probePositionInputLine.split("\\s+");
 		Probe probe = new Probe(Integer.valueOf(splited[0]), 
 				Integer.valueOf(splited[1]), 
 				Direction.fromCharacter(splited[2].charAt(0)),
 				commandInputLineToProbeCommandList(probeCommandsInputLine),
-				grid);
+				grid,
+				probeNumber);
 		
 		return probe;
 	}
